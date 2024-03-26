@@ -1,5 +1,5 @@
 # ImageMarker
-Repository for my image marker project.
+An image labelling application.
 ## Project Setup
 ### Dependencies
  - python 3.10.12
