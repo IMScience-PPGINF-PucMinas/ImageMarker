@@ -33,9 +33,11 @@ class ImageFrame(ctk.CTkFrame):
     def _config_option_frame(self):
         self._option_frame = ctk.CTkFrame(self)
         self._option_frame.grid(row = 0, column = 2, sticky = "nswe")
-        self.combobox = ctk.CTkOptionMenu(master=self._option_frame,
-                                       values=["Object Marker", "Background Marker", "Uncertain Marker", "remove"],
-                                       command=self._choose_marker)
+        self.combobox = ctk.CTkOptionMenu(
+            master=self._option_frame,
+            values=["Object Marker", "Background Marker", "Uncertain Marker", "remove"],
+            command=self._choose_marker
+        )
         self.combobox.set("Object Marker")  # set initial value
         self.combobox.grid(row = 0, column = 0, padx=20, pady=10)
         

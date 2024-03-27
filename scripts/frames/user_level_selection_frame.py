@@ -12,6 +12,7 @@ class UserLevelSelectionFrame(ctk.CTkFrame):
         super().__init__(master=parent)
         self.parent = parent
         self.__user_level = "" 
+        self._user_level_label = ctk.CTkLabel(master = self, text='Choose the user level.')
         self._option_menu = ctk.CTkOptionMenu(
             master=self,
             values=[UserLevel.LEVEL1.value, UserLevel.LEVEL2.value, UserLevel.LEVEL3.value],
@@ -23,10 +24,9 @@ class UserLevelSelectionFrame(ctk.CTkFrame):
             command=self._call_next_frame
         )
 
-        self._option_menu.pack()
-        self._select_image_btn.pack()
-        #self._option_menu.place(relx=0.5, rely=0.5, anchor="center")
-        #self._select_image_btn.place(relx=0.5, rely=0.5, anchor="center")
+        self._user_level_label.pack(anchor = "center", pady = (100, 10))
+        self._option_menu.pack(anchor = "center", pady=10)
+        self._select_image_btn.pack(anchor = "center")
 
     @property
     def user_level(self):
