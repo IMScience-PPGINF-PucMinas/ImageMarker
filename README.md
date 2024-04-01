@@ -1,5 +1,5 @@
 # ImageMarker
-Repository for my image marker project.
+An image labelling application.
 ## Project Setup
 ### Dependencies
  - python 3.10.12
@@ -7,6 +7,10 @@ Repository for my image marker project.
 Just type the subsequent code on a terminal:
 ```
 pip install -r requirements.txt
+```
+if you're a mac user please type:
+```
+brew install python-tk
 ```
 
 ### Usage

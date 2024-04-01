@@ -25,7 +25,7 @@ class ImageFrame(ctk.CTkFrame):
             self._image_canvas.set_remove()
 
     def _config_widgets(self, image):
-        self._image_canvas = ImageCanvas(self, image)
+        self._image_canvas = ImageCanvas(self, image, self.parent._user_level)
         self._image_canvas.grid(row = 0, column = 0, sticky = "nswe", columnspan = 3)
         self._config_option_frame()
 
@@ -33,9 +33,11 @@ class ImageFrame(ctk.CTkFrame):
     def _config_option_frame(self):
         self._option_frame = ctk.CTkFrame(self)
         self._option_frame.grid(row = 0, column = 2, sticky = "nswe")
-        self.combobox = ctk.CTkOptionMenu(master=self._option_frame,
-                                       values=["Object Marker", "Background Marker", "Uncertain Marker", "remove"],
-                                       command=self._choose_marker)
+        self.combobox = ctk.CTkOptionMenu(
+            master=self._option_frame,
+            values=["Object Marker", "Background Marker", "Uncertain Marker", "remove"],
+            command=self._choose_marker
+        )
         self.combobox.set("Object Marker")  # set initial value
         self.combobox.grid(row = 0, column = 0, padx=20, pady=10)
         

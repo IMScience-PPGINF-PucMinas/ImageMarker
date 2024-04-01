@@ -5,12 +5,13 @@ from .marker import *
 from . import file_manager
 
 class ImageCanvas(ctk.CTkFrame):
-    def __init__(self, master, original_image, **kwargs):
+    def __init__(self, master, original_image, user_level, **kwargs):
         super().__init__(master, **kwargs)
         self.master = master
         self._original_image = original_image
         self._image_size = original_image.size
-
+        self.__user_level = user_level
+        print(self.__user_level)
         # Zoom and translation control variables
         self._zoom_factor = 1
         self._translation_x = 0
@@ -69,7 +70,7 @@ class ImageCanvas(ctk.CTkFrame):
     
     def save(self):
         file_manager.save_results(
-        self._original_image, self._painting_image, self._obj_marker_list, self._bg_marker_list, self._uncer_marker_list)
+        self._original_image, self._painting_image, self._obj_marker_list, self._bg_marker_list, self._uncer_marker_list, self.__user_level)
     
     def load_annotation(self):
         obj_markers, bg_markers, uncer_markers = file_manager.load_annotation_from_file()
