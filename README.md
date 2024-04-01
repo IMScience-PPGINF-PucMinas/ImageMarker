@@ -1,5 +1,5 @@
 # ImageMarker
-An image labelling application.
+Application to help labeling ground truth medical images for machine learning.
 ## Project Setup
 ### Dependencies
  - python 3.10.12
