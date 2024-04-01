@@ -50,14 +50,22 @@ class App(ctk.CTk):
    
     def _load_next_frame(self): 
         """ Destroys the current frame and calls the next one."""
-        self._clear_frame()
-        if self._current_frame_name == "":
-            self._load_user_level_selection_frame()
-        elif self._current_frame_name == Frames.FILE_SELECTION_FRAME.value:
-            self._load_image_frame()
-        else: 
-            self._load_file_selection_frame()
-    
+        try:
+            if self._current_frame_name == "":
+                self._clear_frame()
+                self._load_user_level_selection_frame()
+            elif self._current_frame_name == Frames.FILE_SELECTION_FRAME.value:
+                self._clear_frame()
+                self._load_image_frame()
+            elif self._current_frame_name == Frames.USER_LEVEL_SELECTION_FRAME.value:
+                self._user_level = self._current_frame.user_level
+                self._clear_frame()
+                self._load_file_selection_frame()
+            else:
+                raise Exception('Invalid frame selection')
+        except Exception as e:
+            print('An exception has ocurred:', e)
+             
     def _clear_frame(self):
         """ Destroys the current frame."""
         if self._current_frame is not None:
@@ -76,7 +84,6 @@ class App(ctk.CTk):
         self._current_frame = self._user_level_selection_frame
         self._current_frame_name = Frames.USER_LEVEL_SELECTION_FRAME.value
         self._user_level_selection_frame.pack(fill=ctk.BOTH, expand=True)
-        self._user_type = self._user_level_selection_frame.user_level
         
     def _load_image_frame(self):
         self._clear_frame()

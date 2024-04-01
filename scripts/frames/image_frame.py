@@ -25,7 +25,7 @@ class ImageFrame(ctk.CTkFrame):
             self._image_canvas.set_remove()
 
     def _config_widgets(self, image):
-        self._image_canvas = ImageCanvas(self, image)
+        self._image_canvas = ImageCanvas(self, image, self.parent._user_level)
         self._image_canvas.grid(row = 0, column = 0, sticky = "nswe", columnspan = 3)
         self._config_option_frame()
 

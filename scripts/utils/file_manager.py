@@ -75,14 +75,34 @@ def load_annotation_from_file():
         messagebox.showerror("Annotation opening error", "An error ocurred while opening the annotation. Please, try again.")
         return None, None, None
 
-def save_results(original_img, painted_img, obj_markers, bg_markers, uncer_markers):
+def create_folders(result_folder:str, file_name: str) -> tuple[str, str]:
+    ''' Creates the output folders and returns the base file names'''
+    result_image_folder = f'{result_folder}/images'
+    result_marker_folder = f'{result_folder}/markers'
+    result_image_base_name = f'{result_image_folder}/{file_name}'
+    result_marker_base_name = f'{result_marker_folder}/{file_name}'
+
+    if not os.path.isdir(result_folder):
+        os.mkdir(result_folder)
+    if not os.path.isdir(result_image_folder):
+        os.mkdir(result_image_folder)
+    if not os.path.isdir(result_marker_folder):
+        os.mkdir(result_marker_folder)
+    return result_image_base_name, result_marker_base_name
+    
+def save_results(original_img, painted_img, obj_markers, bg_markers, uncer_markers, user_level):
     ''' Main output saving function'''
     save_filepath = filedialog.asksaveasfilename()
-    if save_filepath != "":
-        name_split = save_filepath.rsplit('.', 1) 
-        no_ext_filepath = name_split[0]
-        original_img.save(no_ext_filepath + "_original.jpg")
-        painted_img.save(no_ext_filepath + "_marked.jpg")
-        _save_annotation_files(no_ext_filepath, obj_markers, bg_markers, uncer_markers)
+    print(save_filepath)
+    folder_path = os.path.dirname(save_filepath)
+    file_name = os.path.basename(save_filepath)
+
+    result_folder = f'{folder_path}/{file_name}_{user_level.replace(' ', '_')}'
+    result_image_base_name, result_marker_base_name = create_folders(result_folder, file_name)
+
+    if save_filepath != "": 
+        original_img.save(f'{result_image_base_name}_original.jpg')
+        painted_img.save(f'{result_image_base_name}_marked.jpg')
+        _save_annotation_files(result_marker_base_name, obj_markers, bg_markers, uncer_markers)
     else:
         messagebox.showerror("Result saving error", "The file name can't be empty")
