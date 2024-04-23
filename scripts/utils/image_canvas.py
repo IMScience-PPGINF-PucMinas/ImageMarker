@@ -11,7 +11,6 @@ class ImageCanvas(ctk.CTkFrame):
         self._original_image = original_image
         self._image_size = original_image.size
         self.__user_level = user_level
-        print(self.__user_level)
         # Zoom and translation control variables
         self._zoom_factor = 1
         self._translation_x = 0

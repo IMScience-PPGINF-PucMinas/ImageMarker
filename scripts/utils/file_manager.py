@@ -97,7 +97,7 @@ def save_results(original_img, painted_img, obj_markers, bg_markers, uncer_marke
     folder_path = os.path.dirname(save_filepath)
     file_name = os.path.basename(save_filepath)
 
-    result_folder = f'{folder_path}/{file_name}_{user_level.replace(' ', '_')}'
+    result_folder = f"{folder_path}/{file_name}_{user_level.replace(' ', '_')}"
     result_image_base_name, result_marker_base_name = create_folders(result_folder, file_name)
 
     if save_filepath != "": 
